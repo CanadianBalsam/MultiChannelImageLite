@@ -1,0 +1,18 @@
+#########################################################  I M A G E 
+####  Macro name: Multi-Channel Image Lite beta v0.1
+####  Consolidates all open images into a single multi-channel image.  ##  Closes the open images, leaving only the resulting image open. 
+############################################################# 
+
+Create new image
+destImage = ZenImage()
+
+## Obtain count of open images for purpose of looping through the open images
+imageNumber = Zen.Application.Documents.Count
+
+## Loop through the open images, adding each as an new channel to the destImage
+for i in range(0, imageNumber):    
+  sourceImage = Zen.Application.Documents.ActiveDocument    
+  destImage.AddSubImage(sourceImage, 0, i, 0)    
+  Zen.Application.Documents.ActiveDocument.Close()
+Zen.Application.Documents.Add(destImage)
+#######################################################
